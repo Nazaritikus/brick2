@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "bricks-5e547": {
+      "hosting": {
+        "appBrick": [
+          "bricks-5e547"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "bricks-5e547"
+  }
+}

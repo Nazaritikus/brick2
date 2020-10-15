@@ -1,0 +1,12 @@
+<div class="container mt-2">
+  <h1 class="alert alert-light text-center text-dark">Колекція України</h1>
+  <div class="map">
+    <img
+      *ngFor="let region of locations"
+      [src]="region.src"
+      [alt]="region.codeName"
+      [class]="region.codeName"
+      [routerLink]="'/gallery/' + region.codeName"
+      class="item">
+  </div>
+</div>

@@ -1,0 +1,57 @@
+
+<div class="form-group region-filter">
+  <div class="region">
+    <select
+      class="form-control custom-select"
+      id="reg"
+      [(ngModel)]="region"
+      (change)="uploadRegion()"
+    >
+      <option
+        *ngFor="let item of collectionList.reverse()"
+        [value]="item.codeName">{{item.regionName}}</option>
+    </select>
+  </div>
+  <div class="name">
+    <input type="search" placeholder="Пошук..." class="form-control" [(ngModel)]="search">
+  </div>
+</div>
+
+
+<table
+  class="table table-striped table-light">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Назва</th>
+    <th scope="col">Опис</th>
+    <th scope="col">Додано</th>
+    <th scope="col"></th>
+  </tr>
+  </thead>
+  <tbody *ngIf="!loadingTable else emptyTable">
+  <tr
+    *ngFor="let item of tableData | filter:search; let idx = index">
+    <td>{{idx + 1}}</td>
+    <td>{{item.name}}</td>
+    <td>{{!!item.description ? 'Є' : 'Нема'}}</td>
+    <td>{{item.date | date:'dd/MM/yyyy'}}</td>
+    <td>
+      <a
+        [routerLink]="['/admin', region, item.id ,'edit']"
+        class="text-info"
+      >Редагувати</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<ng-template #emptyTable>
+  <tbody>
+    <tr>
+      <td colspan="5" class="emptyTable">
+        <p>Loading..</p>
+      </td>
+    </tr>
+  </tbody>
+</ng-template>

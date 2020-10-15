@@ -1,0 +1,33 @@
+<form class="form bg-light" [formGroup]="form" (ngSubmit)="submit()">
+  <div class="form-group">
+
+    <div
+      *ngIf="auth.error$ | async as message"
+      class="alert alert-danger">
+      {{message}}
+    </div>
+
+    <div
+      *ngIf="message"
+      class="alert alert-info">
+      {{message}}
+    </div>
+
+    <label for="email" >Email</label>
+    <input type="email" class="form-control" id="email" formControlName="email">
+    <div *ngIf="form.get('email').touched && form.get('email').invalid">
+      <small *ngIf="form.get('email').errors.required" class="text-danger">Поле не може бути порожнім</small>
+      <small *ngIf="form.get('email').errors.email" class="text-danger">Переконайтесь що поле Email правильного формату</small>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="password" >Password</label>
+    <input type="password" class="form-control" id="password" formControlName="password">
+    <div *ngIf="form.get('password').touched && form.get('password').invalid">
+      <small *ngIf="form.get('password').errors.required" class="text-danger">Поле не може бути порожнім</small>
+      <small *ngIf="form.get('password').errors.minlength" class="text-danger">
+        Поле Password повинно містити мінімум {{form.get('password').errors.minlength.requiredLength}} символів</small>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary" [disabled]="form.invalid || submited">Submit</button>
+</form>

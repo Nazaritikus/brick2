@@ -1,0 +1,13 @@
+<div class="container mt-2">
+  <h1 class="alert alert-light text-center text-dark">Зарубіжна України</h1>
+  <div class="map">
+    <img class="europeMap" src="../../assets/images/world/europeMap.png" alt="map of Europe">
+    <img
+      *ngFor="let region of locations"
+      [src]="region.src"
+      [alt]="region.codeName"
+      [class]="region.codeName"
+      [routerLink]="'/gallery/' + region.regionName"
+      class="item">
+  </div>
+</div>

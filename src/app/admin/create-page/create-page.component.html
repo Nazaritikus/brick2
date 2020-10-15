@@ -1,0 +1,90 @@
+<form
+  *ngIf="!isLoading; else loadinBlock"
+  [formGroup]="form"
+  (ngSubmit)="createNew()">
+  <h1 class="text-dark pb-2">Поповнення до Колекції</h1>
+
+  <label for="name" class="text-dark">Назва</label>
+  <input type="text" class="form-control" id="name" formControlName="name" placeholder="Введіть назву..">
+  <div *ngIf="form.get('name').touched && form.get('name').invalid">
+    <small *ngIf="form.get('name').errors.required" class="text-danger">Поле не може бути порожнім</small>
+  </div>
+
+  <label for="region" class="text-dark mt-1">Регіон походження</label>
+  <select
+    formControlName="region"
+    class="form-control custom-select"
+    id="region"
+  >
+    <option
+      *ngFor="let item of collectionList"
+      [value]="item.codeName">{{item.regionName}}</option>
+  </select>
+  <div *ngIf="form.get('region').touched && form.get('region').invalid">
+    <small *ngIf="form.get('region').errors.required" class="text-danger">Виберіть категорію</small>
+  </div>
+
+  <div class="row">
+
+    <div class="col">
+      <div class="imagePreview">
+        <img [src]="imgSrcMain" alt="preview of image" (click)="mainUploader.click()">
+      </div>
+      <div class="form-group mt-1">
+        <label for="mainFile" class="text-dark">Oсновне фото</label>
+        <input
+          #mainUploader
+          type="file"
+          class="form-control-file"
+          id="mainFile"
+          accept="image/*"
+          formControlName="mainFile"
+          (change)="onChanges($event)"
+        >
+        <small id="fileHelpBlock" class="form-text text-muted">
+          Рекомендований розмір - менше 1Мб
+        </small>
+      </div>
+    </div>
+
+
+    <div class="col">
+      <div class="imagePreview">
+        <img [src]="imgSrcThumbnails" alt="preview of image" (click)="thumbnailUploader.click()">
+      </div>
+      <div class="form-group mt-1">
+        <label for="secondFile" class="text-dark">Піктограма</label>
+        <input
+          #thumbnailUploader
+          type="file"
+          class="form-control-file"
+          id="secondFile"
+          accept="image/*"
+          (change)="onChanges($event)"
+          formControlName="thumbnails"
+        >
+        <small id="fileHelpBlocksecond" class="form-text text-muted">
+          Зменшена версія повного сайту
+        </small>
+      </div>
+    </div>
+  </div>
+
+  <div class="custom-control custom-checkbox">
+    <input type="checkbox" class="custom-control-input" id="customCheck1" formControlName="withDescription">
+    <label class="custom-control-label" for="customCheck1">Додати сторінку опису</label>
+  </div>
+
+  <div *ngIf="form.get('withDescription').value">
+    <div  class="bg-light m-2">
+      <quill-editor formControlName="description"></quill-editor>
+    </div>
+  </div>
+
+  <button class="btn btn-primary mt-2" type="submit" [disabled]="isLoading || form.invalid">Додати до колекції</button>
+</form>
+
+<ng-template #loadinBlock>
+  <app-loading></app-loading>
+</ng-template>
+

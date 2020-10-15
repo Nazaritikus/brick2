@@ -1,0 +1,41 @@
+<app-alert></app-alert>
+
+<div class="main min-vh-100">
+<header>
+  <nav class="navbar fixed-top navbar-expand-md navbar-light bg-light py-0 border-bottom">
+
+    <a class="navbar-brand" [routerLink]="['/']">
+      <img class="logo" src="./assets/images/shared/logo.png" alt="logo bricks">
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div
+      *ngIf="auth.isAuthenticated()"
+      class="collapse navbar-collapse"
+      id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto h6">
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['/admin', 'dashboard']">Головна</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['/admin', 'create']">Ще одна!</a>
+        </li>
+      </ul>
+        <img src="./assets/images/shared/author.png" alt="author photo" class="authorPhoto">
+      <a href="#" class="nav-link text-dark" (click)="logout()">Вихід</a>
+    </div>
+  </nav>
+</header>
+<section class="container">
+  <router-outlet></router-outlet>
+</section>
+</div>
