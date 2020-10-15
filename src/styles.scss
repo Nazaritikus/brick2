@@ -1,1 +1,41 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~quill/dist/quill.core.css";
+@import "~quill/dist/quill.snow.css";
+
+.logo{
+  width: 100px;
+  height: 75px;
+}
+
+.item{
+  position: absolute;
+  transition: all .3s ease-in-out;
+
+  &:hover{
+    transform: scale(1.2);
+    z-index: 2;
+  }
+}
+
+
+.main{
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: relative;
+  padding-top: 84px;
+}
+
+.main::after{
+  content: "";
+  background: #ca9a83 url('assets/images/shared/bg.jpg') repeat-y center top;
+  opacity: 0.3;
+  background-size: 100% auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}
+
