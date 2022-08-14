@@ -1,6 +1,9 @@
 <div class="container pt-1" *ngIf="item$ | async as item; else loading">
-  <h1>{{item.name}}</h1>
-  <img class="mainPhoto" [src]="item.mainImg" alt="Brick main photo">
+  <button class="btn btn-light d-flex" (click)="location.back()">
+    <span class="material-icons">navigate_before</span> Назад
+  </button>
+  <h1 class="text-center">{{item.name}}</h1>
+  <img class="mainPhoto" [src]="item.thumbnail" alt="Brick main photo">
   <div  class="bg-light m-2">
     <quill-view-html [content]="item.description" class="bg-light"></quill-view-html>
   </div>

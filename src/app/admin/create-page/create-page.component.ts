@@ -1,12 +1,12 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {Collections} from '../../shared/collections';
-import {Location, NewItem} from '../../shared/interfaces';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Location, BrickItem} from '../../shared/interfaces';
 import {AngularFireStorage} from '@angular/fire/storage';
 import { Subscription} from 'rxjs';
 import {RestService} from '../../shared/services/rest.service';
 import {AlertService} from '../shared/services/alert.service';
 import {Router} from '@angular/router';
+import {mainPageCollection, ukraineMapColection, worldCollection} from '../../shared/collections';
 
 @Component({
   selector: 'app-create-page',
@@ -36,7 +36,7 @@ export class CreatePageComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-    this.collectionList = [...Collections.mainPageCollection, ...Collections.ukraineMapColection, ...Collections.worldCollection]
+    this.collectionList = [...mainPageCollection, ...ukraineMapColection, ...worldCollection]
       .filter(el => el.codeName !== 'ukr' && el.codeName !== 'world');
 
     // TODO array assign
@@ -71,7 +71,7 @@ export class CreatePageComponent implements OnInit, OnDestroy {
     }
     this.isLoading = true;
 
-    const newItem: NewItem = {
+    const newItem: BrickItem = {
       name: this.form.get('name').value,
       mainImg: null,
       thumbnail: null,

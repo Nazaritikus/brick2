@@ -1,54 +1,60 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute, Params} from '@angular/router';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 import {RestService} from '../shared/services/rest.service';
-import {switchMap} from 'rxjs/operators';
-import {NewItem} from '../shared/interfaces';
-import {Subscription} from 'rxjs';
+import {map, switchMap} from 'rxjs/operators';
+import {BrickItem} from '../shared/interfaces';
+import {combineLatest, Observable} from 'rxjs';
 
 @Component({
   selector: 'app-inner-gallery-page',
   templateUrl: './inner-gallery-page.component.html',
-  styleUrls: ['./inner-gallery-page.component.scss']
+  styleUrls: ['./inner-gallery-page.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class InnerGalleryPageComponent implements OnInit, OnDestroy {
+export class InnerGalleryPageComponent implements OnInit {
 
-  items //NewItem[]
-  itemsToShow: NewItem[]
-  region: string
-  search: string
-  getSub: Subscription
-  numberOfTab: number[]
-  numberOnPage: number = 20
-  activeTab: number = 0
-  image = './assets/images/shared/lviv.jpg'
+  items$: Observable<BrickItem[]>;
+  region: string;
+  search = '';
+  image = '';
+  lastPage = true;
+  currentPage = 1;
 
   constructor(
     private activatedRoute: ActivatedRoute,
+    private router: Router,
     private restService: RestService
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
-    this.getSub = this.activatedRoute.params.pipe(
-      switchMap((params: Params) => {
-        this.region = params['regionName']
-        return this.restService.getAllFromRegion(params['regionName'])
+    this.items$ = combineLatest([
+      this.activatedRoute.params.pipe(
+        switchMap((params: Params) => {
+          this.region = params['regionName'];
+          this.image = `'./assets/images/shared/${this.region.toLowerCase()}.jpg';`
+          return this.restService.getAllFromRegion(params['regionName']);
+        })
+      ),
+      this.activatedRoute.queryParams.pipe(map(params => params?.page || this.setQueryParam(1)))
+    ]).pipe(
+      map(([data, page]) => {
+        if (!data) return [];
+        const sortedData = data
+          .filter(item => item.name.trim().toLowerCase().includes(this.search.trim().toLowerCase()))
+          .filter((item, idx) => idx < page * 9 && idx >= page * 9 - 9);
+        this.currentPage = +page;
+        this.lastPage = sortedData.length < 9;
+        return sortedData;
       })
-    ).subscribe(resp => {
-      this.items = resp
-      this.items.push(...[1,2,3,4,5,1,2,4,5,6,6,6,6,4,3,34,3,43,4,34,3,43])
-      this.numberOfTab = Array.from(Array(Math.ceil(this.items.length / this.numberOnPage)).keys())
-      this.setItemsForShow(1)
-    })
+    );
   }
 
-  setItemsForShow(pageNum: number){
-    this.itemsToShow = this.items.filter((el, idx) =>
-      idx >= (pageNum * this.numberOnPage - this.numberOnPage) && idx < pageNum * this.numberOnPage)
-    this.activeTab = pageNum
-  }
-
-  ngOnDestroy() {
-    this.getSub.unsubscribe()
-  }
-
+  setQueryParam = (page: number) =>
+    this.router.navigate(
+      [],
+      {
+        relativeTo: this.activatedRoute,
+        queryParams: { page }
+      });
 }

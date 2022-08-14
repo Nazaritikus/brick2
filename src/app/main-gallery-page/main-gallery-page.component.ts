@@ -1,21 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {Location} from '../shared/interfaces';
-import {Collections} from '../shared/collections';
+import {mainPageCollection} from '../shared/collections';
 
 
 @Component({
   selector: 'app-main-gallery-page',
   templateUrl: './main-gallery-page.component.html',
-  styles: [
-  ]
+  styles: [],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MainGalleryPageComponent implements OnInit {
+export class MainGalleryPageComponent {
 
-  collection: Location[] = Collections.mainPageCollection
+  collection: Location[] = mainPageCollection;
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

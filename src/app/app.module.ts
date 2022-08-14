@@ -17,6 +17,8 @@ import {AngularFireStorageModule} from '@angular/fire/storage';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthInterceptor} from './shared/services/auth.interceptor';
+import { PageBannerComponent } from './page-banner/page-banner.component';
+import { ItemCardComponent } from './item-card/item-card.component';
 
 const INTERCEPTOR: Provider = {
   provide: HTTP_INTERCEPTORS,
@@ -33,7 +35,9 @@ const INTERCEPTOR: Provider = {
     InnerGalleryPageComponent,
     UkrMapPageComponent,
     WorldMapPageComponent,
-    ItemsPageComponent
+    ItemsPageComponent,
+    PageBannerComponent,
+    ItemCardComponent
   ],
   imports: [
     BrowserModule,

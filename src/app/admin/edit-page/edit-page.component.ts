@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {RestService} from '../../shared/services/rest.service';
 import {ActivatedRoute, Params} from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {NewItem} from '../../shared/interfaces';
+import {BrickItem} from '../../shared/interfaces';
 import {switchMap} from 'rxjs/operators';
 import {Subscription} from 'rxjs';
 import {AlertService} from '../shared/services/alert.service';
@@ -20,7 +20,7 @@ export class EditPageComponent implements OnInit, OnDestroy {
   imgSrcThumbnails = this.imgPlaceholder
   region: string
   id: string
-  item: NewItem
+  item: BrickItem
   submited = false
 
   sub: Subscription
@@ -38,7 +38,7 @@ export class EditPageComponent implements OnInit, OnDestroy {
         this.id = params['id']
         return this.restService.getItemById(params['id'], params['region'])
       })
-    ).subscribe((item: NewItem) => {
+    ).subscribe((item: BrickItem) => {
       this.item = item
       this.imgSrcMain = item.mainImg
       this.imgSrcThumbnails = item.thumbnail
@@ -61,7 +61,7 @@ export class EditPageComponent implements OnInit, OnDestroy {
       ...this.item,
       name: this.form.value.name,
       description: this.form.value.description
-    }).subscribe((post: NewItem) => {
+    }).subscribe((post: BrickItem) => {
         this.submited = false
         this.alert.success('Давно треба було це відредагувати!')
     })

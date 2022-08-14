@@ -5,7 +5,7 @@
       *ngFor="let region of locations"
       [src]="region.src"
       [alt]="region.codeName"
-      [class]="region.codeName"
+      [class]="region.codeName.toLowerCase()"
       [routerLink]="'/gallery/' + region.codeName"
       class="item">
   </div>

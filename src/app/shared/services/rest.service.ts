@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {NewItem} from '../interfaces';
+import {BrickItem} from '../interfaces';
 import {environment} from '../../../environments/environment';
 import {map} from 'rxjs/operators';
 
@@ -15,31 +15,36 @@ export class RestService {
   ) {
   }
 
-  create(newPost: NewItem, region: string): Observable<NewItem>{
-    return this.httpClient.post<NewItem>(`${environment.firebaseConfig.databaseURL}/${region}.json`, newPost)
+  create(newPost: BrickItem, region: string): Observable<BrickItem> {
+    return this.httpClient.post<BrickItem>(`${environment.firebaseConfig.databaseURL}/${region}.json`, newPost);
   }
 
-  getAllFromRegion(region: string): Observable<any> {
-    return this.httpClient.get(`${environment.firebaseConfig.databaseURL}/${region}.json`)
+  getAllFromRegion(region: string): Observable<BrickItem[]> {
+    return this.httpClient.get<any>(`${environment.firebaseConfig.databaseURL}/${region}.json`)
       .pipe(
-        map((responce: {[key: string]: any}) => {
-          return Object
-            .keys(responce)
+        map((response: { [key: string]: BrickItem }) =>
+          response ? Object.keys(response)
             .map(key => ({
-              ...responce[key],
+              ...response[key],
               id: key,
-              date: new Date(responce[key].date)
-            }))
-        })
-      )
+              date: new Date(response[key].date)
+            })) : null
+        )
+      );
   }
 
-  getItemById(id: string, region: string): Observable<NewItem>{
-    return this.httpClient.get<NewItem>(`${environment.firebaseConfig.databaseURL}/${region}/${id}.json`)
+  getItemById(id: string, region: string): Observable<BrickItem> {
+    return this.httpClient.get<BrickItem>(`${environment.firebaseConfig.databaseURL}/${region}/${id}.json`);
   }
 
-  updateInfo(id: string, region: string, item: NewItem): Observable<NewItem>{
-    return this.httpClient.patch<NewItem>(`${environment.firebaseConfig.databaseURL}/${region}/${id}.json`, item)
+  getItemDescription(descriptionId: string, region: string): Observable<{description: string, mainId: string}> {
+    return this.httpClient.get<{description: string, mainId: string}>(
+      `${environment.firebaseConfig.databaseURL}/description/${region}/${descriptionId}.json`
+    );
+  }
+
+  updateInfo(id: string, region: string, item: BrickItem): Observable<BrickItem> {
+    return this.httpClient.patch<BrickItem>(`${environment.firebaseConfig.databaseURL}/${region}/${id}.json`, item);
   }
 
 }

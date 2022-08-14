@@ -1,45 +1,46 @@
-<div [ngStyle]="{ 'background': 'url(' + image + ') center / cover no-repeat fixed'}" class="innerGallery">
+<div>
+  <app-page-banner [pageName]="region" [bgImg]="image"></app-page-banner>
   <section class="container">
-    <div class="navigation">
-      <a [routerLink]="['/']"><button class="btn btn-light"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-left-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-        <path fill-rule="evenodd" d="M8.354 11.354a.5.5 0 0 0 0-.708L5.707 8l2.647-2.646a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708 0z"/>
-        <path fill-rule="evenodd" d="M11.5 8a.5.5 0 0 0-.5-.5H6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 .5-.5z"/>
-      </svg>Назад</button></a>
-      <nav aria-label="...">
-        <ul
-          class="pagination">
-          <li
-            *ngFor="let i of numberOfTab;"
-            [class.active]="i === activeTab - 1"
-            class="page-item"
-          ><a
-            (click)="setItemsForShow(i + 1)"
-            class="page-link text-dark">{{i + 1}}
-          </a>
-          </li>
-        </ul>
-      </nav>
-      <input type="search" placeholder="Пошук..." class="form-control" [(ngModel)]="search">
+    <div class="navi">
+      <div class="navi__search">
+
+        <a [routerLink]="['/ukr']">
+          <button class="btn btn-light d-flex"><span class="material-icons">navigate_before</span> Назад</button>
+        </a>
+
+        <input
+          type="search"
+          placeholder="Пошук..."
+          class="form-control navi__search-input"
+          [(ngModel)]="search"
+          (ngModelChange)="setQueryParam(1)">
+      </div>
+      <div class="navi__pagination">
+        <button
+          class="btn btn-light d-flex"
+          (click)="setQueryParam(currentPage - 1)"
+          [disabled]="currentPage == 1"
+        ><span class="material-icons">navigate_before</span> Попередня </button>
+        <button
+          class="btn btn-light d-flex"
+          (click)="setQueryParam(currentPage + 1)"
+          [disabled]="lastPage"
+        ><span class="material-icons">navigate_next</span> Наступна</button>
+      </div>
+
     </div>
 
     <div class="container">
-      <div class="row mt-3" *ngIf="items; else loading">
-        <div
-          *ngFor="let item of itemsToShow | filter:search"
-          class="col-md-6 col-lg-4">
-          <div class="card mb-3 text-center bg-white">
-              <img src="{{item.thumbnail}}" class="card-img-top" alt="Name">
-            <div class="card-body py-2">
-              <h5 class="card-title text-dark">{{item.name}}</h5>
-              <a [routerLink]="['/gallery', region, item.id]"><button class="btn btn-light" [disabled]="!item.description">Показати деталі </button></a>
-            </div>
-          </div>
+      <div class="row mt-3" *ngIf="items$ | async as items; else loading">
+        <p class="text-center" *ngIf="!items.length">Тут ще нічого нема :)</p>
+        <div *ngFor="let item of items" class="col-md-6 col-lg-4">
+          <app-item-card [brickItem]="item"></app-item-card>
         </div>
       </div>
     </div>
   </section>
 </div>
+
 <ng-template #loading>
   <app-loading></app-loading>
 </ng-template>

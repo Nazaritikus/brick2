@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Location} from '../shared/interfaces';
-import {Collections} from '../shared/collections';
+import {ukraineMapColection} from '../shared/collections';
 
 @Component({
   selector: 'app-ukr-map-page',
@@ -9,7 +9,7 @@ import {Collections} from '../shared/collections';
 })
 export class UkrMapPageComponent implements OnInit {
 
-  locations: Location[] = Collections.ukraineMapColection
+  locations: Location[] = ukraineMapColection;
 
   constructor() { }
 

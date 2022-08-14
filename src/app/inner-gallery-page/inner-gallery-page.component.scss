@@ -1,20 +1,27 @@
-.innerGallery{
-  width: 100vw;
-  height: calc(100vh - 84px);
-  margin: 0 auto;
-}
 
-.navigation{
-  padding-top: 40px;
-  display: flex;
-  justify-content: space-between;
-  .btn{
+.navi {
+
+  padding: 10px;
+
+  &__search {
     display: flex;
-    svg{
-      margin: auto 10px auto 0;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+
+    a:hover {
+      text-decoration: none;
+    }
+
+    &-input {
+      max-width: 200px;
     }
   }
-  input{
-    max-width: 200px;
+
+  &__pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 10px;
   }
 }

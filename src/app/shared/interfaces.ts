@@ -10,11 +10,13 @@ export interface Location {
   regionName: string
 }
 
-export interface NewItem {
+export interface BrickItem {
   name: string
   mainImg: string
   thumbnail: string
   description: string
+  descriptionId?: string
+  region?: string
   date?: Date,
   id?: string
 }

@@ -1,0 +1,9 @@
+<div class="card mb-3 text-center bg-white" *ngIf="brickItem">
+  <img [src]="brickItem?.thumbnail" class="card-img-top" alt="brick photo">
+  <div class="card-body">
+    <h5 class="card-title text-dark">{{ brickItem.name }}</h5>
+    <a [routerLink]="['/gallery', brickItem.region, brickItem.id]">
+      <button class="btn btn-light" [disabled]="!brickItem.descriptionId">Показати деталі</button>
+    </a>
+  </div>
+</div>

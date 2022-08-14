@@ -15,7 +15,6 @@ export class BgControlDirective implements OnInit{
   @HostBinding('class') elClass;
   ngOnInit(): void {
     this.actvRoute.params.subscribe(params => {
-      console.log(this.el.nativeElement)
       this.renderer.setStyle(this.el.nativeElement, 'background-color', 'red')
     })
 

@@ -1,20 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {Location} from '../shared/interfaces';
-import {Collections} from '../shared/collections';
+import {worldCollection} from '../shared/collections';
 
 @Component({
   selector: 'app-world-map-page',
   templateUrl: './world-map-page.component.html',
-  styleUrls: ['./world-map-page.component.scss']
+  styleUrls: ['./world-map-page.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class WorldMapPageComponent implements OnInit {
+export class WorldMapPageComponent {
 
-  locations: Location[] = Collections.worldCollection
+  locations: Location[] = worldCollection
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

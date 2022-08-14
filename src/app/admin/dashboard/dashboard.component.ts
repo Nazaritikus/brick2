@@ -1,8 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {RestService} from '../../shared/services/rest.service';
-import {Collections} from '../../shared/collections';
-import {Location, NewItem} from '../../shared/interfaces';
+import {Location, BrickItem} from '../../shared/interfaces';
 import {Subscription} from 'rxjs';
+import {mainPageCollection, ukraineMapColection, worldCollection} from '../../shared/collections';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,7 +14,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   loadingTable: boolean = false
   collectionList: Location[] = []
   region: string = 'lviv'
-  tableData: NewItem[] = []
+  tableData: BrickItem[] = []
   sub: Subscription
   search: string = ''
 
@@ -23,7 +23,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.collectionList = [...Collections.mainPageCollection, ...Collections.ukraineMapColection, ...Collections.worldCollection]
+    this.collectionList = [...mainPageCollection, ...ukraineMapColection, ...worldCollection]
       .filter(el => el.codeName !== 'ukr' && el.codeName !== 'world');
     this.uploadRegion()
   }

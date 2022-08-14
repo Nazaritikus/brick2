@@ -1,8 +1,6 @@
-  <div class="container">
-    <h1 class="alert alert-light text-center text-dark mt-2">Колекція</h1>
-    <div
-      *ngFor="let item of collection"
-      class="list-group">
-      <a [routerLink]="item.src" class="list-group-item list-group-item-action">{{item.regionName}}</a>
-    </div>
+<div class="container">
+  <h1 class="alert alert-light text-center text-dark mt-2">Колекція</h1>
+  <div *ngFor="let item of collection" class="list-group">
+    <a [routerLink]="item.src" class="list-group-item list-group-item-action">{{item.regionName}}</a>
   </div>
+</div>
