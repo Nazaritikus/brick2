@@ -1,10 +1,10 @@
 <div>
-  <app-page-banner [pageName]="region" [bgImg]="image"></app-page-banner>
+  <app-page-banner *ngIf="region" [pageName]="region"></app-page-banner>
   <section class="container">
     <div class="navi">
       <div class="navi__search">
 
-        <a [routerLink]="['/ukr']">
+        <a [routerLink]="['/']">
           <button class="btn btn-light d-flex"><span class="material-icons">navigate_before</span> Назад</button>
         </a>
 

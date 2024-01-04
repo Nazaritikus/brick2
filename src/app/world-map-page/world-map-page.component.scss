@@ -5,6 +5,10 @@
   height: 556px;
 }
 
+.map img:not(.europeMap) {
+  width: 60px;
+}
+
 .europeMap{
   display: block;
   width: 787px;
@@ -12,55 +16,55 @@
 }
 
 /*Europe*/
-.austria{
+.Austria{
   top: 358px;
   left: 291px;
 }
 
-.bilorus{
+.Belarus{
   top: 258px;
   left: 420px;
 }
 
-.czech{
+.Czech{
   top: 324px;
   left: 300px;
 }
 
 
-.england{
+.England{
   top: 258px;
   left: 124px;
 }
 
-.finland{
+.Finland{
   top: 140px;
   left: 380px;
 }
 
-.germany{
+.Germany{
   top: 290px;
   left: 238px;
 }
 
-.hungary{
+.Hungary{
   top: 362px;
   left: 342px;
 }
 
 
-.litva{
+.Litva{
   top: 242px;
   left: 380px;
 }
 
 
-.estonia{
+.Estonia{
   top: 198px;
   left: 400px;
 }
 
-.poland{
+.Poland{
   top: 280px;
   left: 332px;
 }
@@ -70,22 +74,22 @@
   left: 500px;
 }
 
-.slovakia{
+.Slovakia{
   top: 340px;
   left: 350px;
 }
 
-.spain{
+.Spain{
   top: 404px;
   left: 52px;
 }
 
-.sweden{
+.Sweden{
   top: 189px;
   left: 296px;
 }
 
-.japan{
+.Japan{
   top: 266px;
   left: 712px;
 }

@@ -23,7 +23,7 @@ export class InnerGalleryPageComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private restService: RestService
+    private restService: RestService,
   ) {
   }
 
@@ -32,7 +32,6 @@ export class InnerGalleryPageComponent implements OnInit {
       this.activatedRoute.params.pipe(
         switchMap((params: Params) => {
           this.region = params['regionName'];
-          this.image = `'./assets/images/shared/${this.region.toLowerCase()}.jpg';`
           return this.restService.getAllFromRegion(params['regionName']);
         })
       ),
@@ -42,9 +41,9 @@ export class InnerGalleryPageComponent implements OnInit {
         if (!data) return [];
         const sortedData = data
           .filter(item => item.name.trim().toLowerCase().includes(this.search.trim().toLowerCase()))
-          .filter((item, idx) => idx < page * 9 && idx >= page * 9 - 9);
+          .filter((item, idx) => idx < page * 12 && idx >= page * 12 - 12);
         this.currentPage = +page;
-        this.lastPage = sortedData.length < 9;
+        this.lastPage = sortedData.length < 12;
         return sortedData;
       })
     );

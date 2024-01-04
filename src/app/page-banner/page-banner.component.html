@@ -1,5 +1,6 @@
 <div
-  [style.background-image]="'url(' + bgImg + ')'"
+  *ngIf="pageInfo"
+  [style.background-image]="'url(' + image + ')'"
   class="page__banner">
-  <h1 class="page__banner-region">{{ pageName }}</h1>
+  <h1 class="page__banner-region">{{ pageInfo.regionName }}</h1>
 </div>

@@ -8,7 +8,7 @@ export const mainPageCollection: Location[] = [
   {src: '/gallery/cherepica', codeName: 'cherepica', regionName: 'Черепиця'},
   {src: '/gallery/gerby_znaky', codeName: 'gerby_znaky', regionName: 'Герби і знаки'},
   {src: '/gallery/Potocki', codeName: 'Potocki', regionName: 'Родина Потоцьких'},
-  {src: '/gallery/other', codeName: 'other', regionName: 'Інше'}
+  {src: '/gallery/other', codeName: 'Other', regionName: 'Інше'}
 ];
 
 export const ukraineMapColection: Location[] = [
@@ -40,19 +40,19 @@ export const ukraineMapColection: Location[] = [
 ];
 
 export const worldCollection: Location[] = [
-  {src: './assets/images/world/#.png', codeName: 'austria', regionName: 'Австрія'},
-  {src: './assets/images/world/#.png', codeName: 'bilorus', regionName: 'Білорусь'},
-  {src: './assets/images/world/#.png', codeName: 'czech', regionName: 'Чехія'},
-  {src: './assets/images/world/#.png', codeName: 'england', regionName: 'Англія'},
-  {src: './assets/images/world/#.png', codeName: 'finland', regionName: 'Фінляндія'},
-  {src: './assets/images/world/#.png', codeName: 'germany', regionName: 'Німеччина'},
-  {src: './assets/images/world/#.png', codeName: 'hungary', regionName: 'Угорщина'},
-  {src: './assets/images/world/#.png', codeName: 'litva', regionName: 'Литва'},
-  {src: './assets/images/world/#.png', codeName: 'estonia', regionName: 'Естонія'},
-  {src: './assets/images/world/#.png', codeName: 'poland', regionName: 'Польща'},
+  {src: './assets/images/world/#.png', codeName: 'Austria', regionName: 'Австрія'},
+  {src: './assets/images/world/#.png', codeName: 'Belarus', regionName: 'Білорусь'},
+  {src: './assets/images/world/#.png', codeName: 'Czech', regionName: 'Чехія'},
+  {src: './assets/images/world/#.png', codeName: 'England', regionName: 'Англія'},
+  {src: './assets/images/world/#.png', codeName: 'Finland', regionName: 'Фінляндія'},
+  {src: './assets/images/world/#.png', codeName: 'Germany', regionName: 'Німеччина'},
+  {src: './assets/images/world/#.png', codeName: 'Hungary', regionName: 'Угорщина'},
+  {src: './assets/images/world/#.png', codeName: 'Litva', regionName: 'Литва'},
+  {src: './assets/images/world/#.png', codeName: 'Estonia', regionName: 'Естонія'},
+  {src: './assets/images/world/#.png', codeName: 'Poland', regionName: 'Польща'},
   {src: './assets/images/world/#.png', codeName: 'rusia', regionName: 'Раша'},
-  {src: './assets/images/world/#.png', codeName: 'slovakia', regionName: 'Словаччина'},
-  {src: './assets/images/world/#.png', codeName: 'spain', regionName: 'Іспанія'},
-  {src: './assets/images/world/#.png', codeName: 'sweden', regionName: 'Швеція'},
-  {src: './assets/images/world/#.png', codeName: 'japan', regionName: 'Японія'}
+  {src: './assets/images/world/#.png', codeName: 'Slovakia', regionName: 'Словаччина'},
+  {src: './assets/images/world/#.png', codeName: 'Spain', regionName: 'Іспанія'},
+  {src: './assets/images/world/#.png', codeName: 'Sweden', regionName: 'Швеція'},
+  {src: './assets/images/world/#.png', codeName: 'Japan', regionName: 'Японія'}
 ];

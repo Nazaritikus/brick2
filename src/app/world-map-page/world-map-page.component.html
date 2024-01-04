@@ -4,10 +4,10 @@
     <img class="europeMap" src="../../assets/images/world/europeMap.png" alt="map of Europe">
     <img
       *ngFor="let region of locations"
-      [src]="region.src"
+      src="assets/images/shared/brick.png"
       [alt]="region.codeName"
       [class]="region.codeName"
-      [routerLink]="'/gallery/' + region.regionName"
+      [routerLink]="'/gallery/' + region.codeName"
       class="item">
   </div>
 </div>
